@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form>
+   <label>Genre :</label>
+    <select name="genre">
+        <option values="">-Select-</option>
+        <option values="education">Education</option>
+        <option values="movie">movie</option>
+        <option values="sports">Sports</option>
+        <option values="other">Other</option>
+    </select>
+     <input type="submit" value="filter">
+  <input type="text" id="search" placeholder="Search..." name="search">
+  <button type="submit">Search</button>
+</form><br>
+{% for i in blogs %}
+<h2><a class="text-dark text-decoration-none" href="{% url 'details' i.id %}"> {{i.title}} <a/> </h2>
+<br>
+<!--<h4>{{i.content}}</h4>-->
+{% endfor %}
+
+{% endblock content %}
+
+

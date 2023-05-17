@@ -1,0 +1,9 @@
+
+<h1> {{article.title }}</h1>
+<h1> {{article.content }}</h1>
+
+
+<a href="{% url 'edit' article.id %}"> Edit</a>
+<br>
+<br>
+<a href="{% url 'delete' article.id %}"> delete</a>

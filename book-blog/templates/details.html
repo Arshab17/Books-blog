@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> {{article.title }}</h1>
+{% if article.image %}
+<img class="w-50" src="{{article.image.url }}">
+{% endif %}
+<h1> {{article.content }}</h1><small> {{article.author.email }}</small>
+
+
+
+<!--<a href="{% url 'home' %}" > home</a>-->
+<br>
+<br>
+{% if request.user == article.author %}
+    <a class="btn btn-outline-info" href="{% url 'edit' article.id %}"> Edit</a>
+    <a class="btn btn-outline-danger" href="{% url 'delete' article.id %}"> delete</a>
+
+{% endif %}
+
+<h4>comments</h4>
+<form method ='POST'>
+    {% csrf_token %}
+    <input type = 'text' name = 'comment' value="{{edit_comment.comment_text}}">
+    <input type="submit" value="{% if edit %} save {% else %} post {% endif %}">
+</form>
+{% for comment in comments %}
+    {% if comment != edit_comment %}
+
+        {{ comment.comment_text }}
+<br>    -{{ comment.comment_author }}
+<br>
+        {% if not edit %}
+            {% if request.user == comment.comment_author or request.user == article.author %}
+            <a href="{% url 'comment_delete' comment.id%}">Delete</a>
+            <a href="{% url 'comment_edit' comment.id%}">Edit</a>
+<br>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+{% endfor %}
+{% include 'footer.html' %}
+{% endblock content %}

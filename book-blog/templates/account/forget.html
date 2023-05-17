@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method ='POST'>
+    {% csrf_token %}
+    <label> Username :</label> <input type="text" name="username"> <br>
+    <p style="color:blue"> please enter your registered username to recieve verification email </p>
+<!--    <label> Password:</label> <input type="password" name="password1"> <br>-->
+<!--    <label> Re-type Password:</label> <input type="password" name="password2"> <br>-->
+    <br><input type="submit" value="change">
+</form>
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+        <span style="color:red"> {{message}} </span>
+    {% else %}
+          <span style="color:green"> {{message}} </span>
+   {% endif %}
+{% endfor %}
+
+</body>
+</html>

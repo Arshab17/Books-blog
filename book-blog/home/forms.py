@@ -1,0 +1,9 @@
+from django.forms import ModelForm
+from .models import Article
+
+class ArticleForm(ModelForm):
+    class Meta:
+        model = Article
+        fields = ('title','content','genre')
+        # fields = __all__
+        # exclude = ('create',) excepte create field

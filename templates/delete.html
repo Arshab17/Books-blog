@@ -1,0 +1,7 @@
+<h4> Are you sure?,want to delete '{{article.title}}'?</h4>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="confirm">
+</form>
+<button> <a href="{% url 'details' article.id %}"> Cancel </a> </button>
